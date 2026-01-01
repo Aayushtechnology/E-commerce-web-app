@@ -1,8 +1,10 @@
-// module.exports=(fn) => {
-//     return (req,res,next).catch(err) => {
-//         return res.status(500).json({
-//             message:"internal server error",
-//             error:err.message
-//         })
-//     }
-// }
+module.exports=(fn) => {
+    return(req,res,next)=>{
+        fn(req,res,next).catch((err)=>{
+            return res.status(500).json({
+                massage :err.massage,
+                fullError:err
+            })
+        })
+    }
+}

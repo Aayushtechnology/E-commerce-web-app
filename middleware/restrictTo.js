@@ -1,5 +1,5 @@
 const restrictTo = (...roles) => {
-    return (req, res, next) => {
+    return (req,res, next) => {
         //   console.log(roles)
      const userRole = req.user.role
         console.log(userRole);   
@@ -8,9 +8,7 @@ const restrictTo = (...roles) => {
 
        
     
-        //  else (
-             next()
-    //  )
+       next()
     }
     }
 

@@ -4,7 +4,7 @@ const fs = require("fs");
 
 exports.createProduct = async (req, res) => {
     console.log(req.user);
-    try {
+   
         const { productName, productDescription, productPrice, productStatus, productStockQty } = req.body
 
         if (!productName || !productDescription || !productPrice || !productStatus || !productStockQty) {
@@ -34,17 +34,13 @@ exports.createProduct = async (req, res) => {
             message: "product create successfully",
             data: productCreate
         })
-    } catch (error) {
-        console.error('Create product error:', error)
-        return res.status(400).json({
-            message: error.message || "Failed to create product"
-        })
-    }
+    
 }
 
 
 exports.getProducts = async (req, res) => {
     // const productReviews = await Review.find().populate("userId")
+  
     const products = await Product.find()
 
     if (products.length === 0) {
@@ -58,70 +54,82 @@ exports.getProducts = async (req, res) => {
             // review: productReviews
         })
     }
+   
+
 
 }
 
 exports.getsingleproduct = async (req, res) => {
-    const { id } = req.params
+  
+       const { id } = req.params
 
-    if (!id) {
-        return res.status(400).json({
-            message: "please provide product id"
-        })
-    }
+       if (!id) {
+           return res.status(400).json({
+               message: "please provide product id"
+           })
+       }
 
 
-    const product = await Product.find({ _id: id })
+       const product = await Product.find({ _id: id })
 
-    // const productReviews = await Review.find({ productId: id }).populate("userId")
+       // const productReviews = await Review.find({ productId: id }).populate("userId")
 
-    if (product == 0) {
-        return res.status(400).json({
-            message: "product is not found with this id"
-        })
-    }
-    return res.status(200).json({
-        message: "single product is fetch successfully",
-        data: product,
-        // productReviews
-    })
+       if (product == 0) {
+           return res.status(400).json({
+               message: "product is not found with this id"
+           })
+       }
+       return res.status(200).json({
+           message: "single product is fetch successfully",
+           data: product,
+       // productReviews
+       })
+   
+    
 
 }
 
 exports.deleteproduct = async (req, res) => {
-    const { id } = req.params
+    try {
+        const { id } = req.params
 
-    if (!id) {
-        return res.status(400).json({
-            message: "please provide product id"
+        if (!id) {
+            return res.status(400).json({
+                message: "please provide product id"
+            })
+        }
+
+        const prevdata = await Product.findById(id);
+
+        if (!prevdata) {
+            return res.status(400).json({
+                message: "no product found with that id"
+            })
+        }
+
+        const preproductimage = prevdata.productImage
+
+        if (preproductimage) {
+            fs.unlink("./upload/" + preproductimage, (err) => {
+                if (err) {
+                    console.log("error deleting file", err)
+                } else {
+                    console.log("file delete successfully")
+                }
+            })
+        }
+
+        await Product.findByIdAndDelete(id)
+        res.status(200).json({
+            message: "product is delete successfully",
+            data: prevdata
+        })
+    } catch (error) {
+        console.error('Create product error:', error)
+        return res.status(500).json({
+            message: error.message || "sEmothing went worng"
         })
     }
-
-    const prevdata = await Product.findById(id);
-
-    if (!prevdata) {
-        return res.status(400).json({
-            message: "no product found with that id"
-        })
-    }
-
-    const preproductimage = prevdata.productImage
-
-    if (preproductimage) {
-        fs.unlink("./upload/" + preproductimage, (err) => {
-            if (err) {
-                console.log("error deleting file", err)
-            } else {
-                console.log("file delete successfully")
-            }
-        })
-    }
-
-    await Product.findByIdAndDelete(id)
-    res.status(200).json({
-        message: "product is delete successfully",
-        data: prevdata
-    })
 }
 
 exports.editproduct = async (req, res) => {

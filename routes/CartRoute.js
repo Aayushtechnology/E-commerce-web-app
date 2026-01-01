@@ -3,6 +3,6 @@ const isAuthention = require("../middleware/isAuthention")
 
 const router = require("express").Router()
 
-router.route("/:produtId").post(isAuthention,(addToCart))
+router.route("/:productId").post(isAuthention,(addToCart))
 
 module.exports = router

@@ -2,7 +2,7 @@
   "name": "ecomerce-web-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && nodemon app.js",
     "dev": "nodemon app.js"
@@ -20,6 +20,7 @@
     "mongoose": "^8.20.1",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.11",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "socket.io": "^4.8.3"
   }
 }

@@ -14,7 +14,7 @@ exports.registerUser = async (req, res) => {
     }
 
 
-    try {
+   
         const userFound = await User.find({ userEmail: email })
 
         if (userFound.length > 0) {
@@ -36,59 +36,51 @@ exports.registerUser = async (req, res) => {
             message: "registration successully",
             data: userData
         })
-    } catch (err) {
-        // If mongoose validation error, return 400 with details
-        if (err.name === 'ValidationError') {
-            // collect messages
-            const messages = Object.values(err.errors).map(e => e.message)
-            return res.status(400).json({ message: messages.join('; ') })
-        }
-        // otherwise return generic 500 with message
-        console.error('registerUser error:', err)
-        return res.status(500).json({ message: 'Internal server error' })
-    }
+    
 
 }
 
 
 exports.loginUser = async (req, res) => {
 
-    const { email, password } = req.body
+    
+        const { email, password } = req.body
 
 
-    if (!email || !password) {
-        return res.status(400).json({
-            message: "email, password most be provide"
-        })
-    }
+        if (!email || !password) {
+            return res.status(400).json({
+                message: "email, password most be provide"
+            })
+        }
 
-    const userFound = await User.find({ userEmail: email })
-    if (userFound.length == 0) {
-        return res.status(400).json({
-            message: "this email is not register"
-        })
-    }
+        const userFound = await User.find({ userEmail: email })
+        if (userFound.length == 0) {
+            return res.status(400).json({
+                message: "this email is not register"
+            })
+        }
 
-    const isMatched = bcrypt.compareSync(password, userFound[0].userPassword)
+        const isMatched = bcrypt.compareSync(password, userFound[0].userPassword)
 
 
-    if (isMatched) {
+        if (isMatched) {
 
-        const token = jwt.sign({ id: userFound[0]._id }, "hello@33rwcfd,.dhh", {
-            expiresIn: "9475858s"
-        })
+            const token = jwt.sign({ id: userFound[0]._id }, "hello@33rwcfd,.dhh", {
+                expiresIn: "9475858s"
+            })
 
-        return res.status(200).json({
-            message: "user logged in successfully",
-            data: userFound,
-            token: token
-        })
+            return res.status(200).json({
+                message: "user logged in successfully",
+                data: userFound,
+                token: token
+            })
 
-    } else {
-        return res.status(400).json({
-            message: "Invalid password"
-        })
-    }
+        } else {
+            return res.status(400).json({
+                message: "Invalid password"
+            })
+        }
+   
 
 }
 
