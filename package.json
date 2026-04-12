@@ -5,8 +5,7 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && nodemon app.js",
-    "dev": "nodemon app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
