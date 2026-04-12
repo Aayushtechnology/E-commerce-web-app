@@ -1,7 +1,7 @@
 
 
 const { registerUser, loginUser, forgotPassword, verifyOtp, ResetPassword } = require("../controller/authController");
-const CatchAysnc = require("../service/CatchAysnc");
+const CatchAysnc = require("../serive/CatchAysnc");
 const router = require("express").Router();
 
 

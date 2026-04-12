@@ -7,7 +7,7 @@ const isAuthention = require("../middleware/isAuthention");
 const restrictTo = require("../middleware/restrictTo");
 // const multer = require ("../middleware/multerConfig.js");
 const {multer,storage} = require("../middleware/multerConfig.js");
-const CatchAysnc = require("../service/CatchAysnc.js");
+const CatchAysnc = require("../serive/CatchAysnc.js");
 const upload = multer({ storage: storage })
 
 

@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs")
 const User = require("./model/usermodel");
 exports.adimSeeder = async ()=> {
 
@@ -14,7 +14,6 @@ exports.adimSeeder = async ()=> {
         console.log("adim already exist");
         return;
     }
-
 
      await User.bulk({
         userEmail: "aayshcomeditor420@gmail.",

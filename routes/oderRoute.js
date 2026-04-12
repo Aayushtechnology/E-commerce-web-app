@@ -1,7 +1,7 @@
 
 const { getMyorders, createOrder, cancelOrder, updateMyOrder, deleteMyOrder } = require("../controller/oderController")
 const isAutenticated = require("../middleware/isAuthention")
-const CatchAysnc = require("../service/CatchAysnc")
+const CatchAysnc = require("../serive/CatchAysnc")
 // const restrictTo = require("../middleware/restrictTo")
 // const catchAsync = reqire("../")
 

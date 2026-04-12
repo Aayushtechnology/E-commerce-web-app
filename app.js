@@ -12,6 +12,7 @@ const cartRoute = require("./routes/CartRoute")
 // const middleware = require("./middleware/isAuthention");
 const { Server } = require("socket.io")
 
+
 // .env lai use garne
 require("dotenv").config();
 
@@ -22,7 +23,7 @@ app.use(express.urlencoded());
 
 // Routes
 app.use("/api/auth/", authRoute);
-app.use("/api/admin/product", productRoute);
+app.use("/api/product", productRoute);
 app.use("/api/auth/product/", productRoute)
 app.use("/api/admin/", adimuserRoute)
 app.use("/api/order", oderRoute)

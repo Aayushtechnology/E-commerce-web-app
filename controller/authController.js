@@ -1,6 +1,6 @@
 const User = require("../model/usermodel")
 const bcrypt = require("bcryptjs")
-const sendEmail = require("../service/sendEmail")
+const sendEmail = require("../serive/sendEmail")
 const jwt = require("jsonwebtoken")
 
 exports.registerUser = async (req, res) => {
