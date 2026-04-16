@@ -13,6 +13,17 @@ const cartRoute = require("./routes/CartRoute")
 const { Server } = require("socket.io")
 
 
+
+cors =  require("cors");
+
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://your-frontend.vercel.app"
+    ],
+    credentials: true
+}));
+
 // .env lai use garne
 require("dotenv").config();
 

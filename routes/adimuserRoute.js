@@ -6,4 +6,4 @@ const router= require("express").Router()
 
 router.route("/user").get(isAutenticated, restrictTo("admin"), getUser)
 
-module.exports= router
+module.exports= router;
