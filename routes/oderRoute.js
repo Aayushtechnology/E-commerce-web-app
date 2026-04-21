@@ -7,9 +7,9 @@ const CatchAysnc = require("../serive/CatchAysnc")
 
 const router = require("express").Router()
 
-router.route("/").get(isAutenticated, getMyorders).post(isAutenticated,CatchAysnc, createOrder)
-router.route("/cancel").patch(isAutenticated, CatchAysnc,cancelOrder)
-router.route("/:id").patch(isAutenticated, updateMyOrder).delete(isAutenticated,CatchAysnc, deleteMyOrder)
+router.route("/").get(isAutenticated, getMyorders).post(isAutenticated, CatchAysnc, createOrder)
+router.route("/cancel").patch(isAutenticated, CatchAysnc, cancelOrder)
+router.route("/:id").patch(isAutenticated, CatchAysnc(updateMyOrder)).delete(isAutenticated, CatchAysnc, deleteMyOrder)
 
 
 module.exports = router

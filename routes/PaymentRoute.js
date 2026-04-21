@@ -5,7 +5,7 @@ const catchAsync = require("../../serive/catchAsync")
 const router = require("express").Router()
 
 
-router.route("/").post(isAuthenticated, catchAsync(initiateKhaltiPayment))
+router.route("/payment").post(isAuthenticated, catchAsync(initiateKhaltiPayment))
 router.route("/verifypidx").post(isAuthenticated, catchAsync(verifyPidx))
 
 

@@ -6,7 +6,7 @@ const CatchAysnc = require("../service/CatchAysnc");
 const router = require("express").Router()
 
 
-router.route("/").get(isAutenticated, getMyProfile).delete(isAutenticated, deleteMyProfile).patch(isAutenticated,CatchAysnc, updaeMyProfile)
+router.route("/profile").get(isAutenticated, getMyProfile).delete(isAutenticated, deleteMyProfile).patch(isAutenticated,CatchAysnc, updaeMyProfile)
 
 router.route("/changepassword").patch(isAutenticated, updateMyPassword, CatchAysnc)
 

@@ -1,10 +1,11 @@
-module.exports=(fn) => {
-    return(req,res,next)=>{
-        fn(req,res,next).catch((err)=>{
+// async error wrapper
+module.exports = (fn) => {
+    return (req, res, next) => {
+        Promise.resolve(fn(req, res, next)).catch((err) => {
             return res.status(500).json({
-                massage :err.massage,
-                fullError:err
-            })
-        })
-    }
-}
+                message: err.message,
+                fullError: err,
+            });
+        });
+    };
+};
